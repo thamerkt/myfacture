@@ -1,0 +1,13 @@
+<!-- navbar.component.html -->
+<nav>
+  <ul>
+    <li><a routerLink="/dashboard">Dashboard</a></li>
+    
+    <!-- Toggle the logout icon based on authentication status -->
+    <li *ngIf="authservice.isAuthenticated()">
+      <a routerLink="/logout">
+        <i class="logout-icon">Logout</i> <!-- Replace with a Font Awesome icon or your own icon -->
+      </a>
+    </li>
+  </ul>
+</nav>

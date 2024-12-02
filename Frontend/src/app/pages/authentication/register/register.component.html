@@ -1,0 +1,85 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="flex flex-wrap items-center">
+    <!-- Image Section -->
+    <div class="w-full md:w-1/2 px-4">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/600x400" alt="Placeholder image"
+          class="w-full h-auto rounded-lg shadow-lg">
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="w-full md:w-1/2 px-4">
+      <div class="card auth">
+        <div class="card-body auth-card">
+          <div class="auth-avatar mb-4">
+            <img
+              src="https://pluspng.com/img-png/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png"
+              alt="user avatar" class="user-image rounded-full w-32 h-32 mx-auto">
+          </div>
+
+          <form (ngSubmit)="signUp()" #signUpForm="ngForm">
+            <div class="form-group mb-4">
+              <label for="name" class="block text-sm font-medium">Name: </label>
+              <input type="text" name="name" id="name" class="form-control w-full p-2 border rounded-lg"
+                placeholder="Name" [(ngModel)]="userData.name" #name="ngModel"
+                [ngClass]="{'border-red-500': name.invalid && (name.dirty || name.touched)}" required>
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-red-500 text-xs mt-1">
+                Name is required.
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="email" class="block text-sm font-medium">Email: </label>
+              <input type="email" name="email" id="email" class="form-control w-full p-2 border rounded-lg"
+                placeholder="Email" [(ngModel)]="userData.email" #email="ngModel"
+                [ngClass]="{'border-red-500': email.invalid && (email.dirty || email.touched)}" required>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-red-500 text-xs mt-1">
+                Please enter a valid email address.
+              </div>
+            </div>
+            
+
+            <!-- Password Field -->
+            <div class="form-group mb-4">
+              <label for="password" class="block text-sm font-medium">Password: </label>
+              <input type="password" name="password" id="password" class="form-control w-full p-2 border rounded-lg"
+                placeholder="********" [(ngModel)]="userData.password" #password="ngModel"
+                [ngClass]="{'border-red-500': password.invalid && (password.dirty || password.touched)}" required>
+              <!-- Error Message for Password -->
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-red-500 text-xs mt-1">
+                Password is required.
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="c_password" class="block text-sm font-medium">Confirm Password: </label>
+              <input type="password" name="c_password" id="c_password" class="form-control w-full p-2 border rounded-lg"
+                placeholder="********" [(ngModel)]="userData.confirmPassword" #confirmPassword="ngModel"
+                [ngClass]="{'border-red-500': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)}"
+                required>
+              <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+                class="text-red-500 text-xs mt-1">
+                Confirm Password is required.
+              </div>
+            </div>
+            <span class="text-red-500 text-12">{{errorr}}</span>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-my bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+              [disabled]="!isFormValid()">
+                Sign Up
+              </button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center mt-4">
+              Already have an account?
+              <a routerLink="/login" class="text-blue-500">Login</a> here.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

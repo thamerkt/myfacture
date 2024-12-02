@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<div class="flex">
+
+  <!-- Sidebar Component -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-8 ml-64"> <!-- Added ml-64 to shift content to the right and avoid overlap with sidebar -->
+
+    <!-- Page Header -->
+    <h1 class="text-3xl font-bold mb-6">Excel Reader</h1>
+
+    <!-- File input to upload Excel file -->
+    <div class="mb-6">
+      <input 
+        type="file" 
+        (change)="onFileChange($event)" 
+        accept=".xlsx, .xls" 
+        class="px-4 py-2 border border-gray-300 rounded-md bg-white w-full sm:w-80"
+      />
+    </div>
+
+    <!-- Table to display Excel data -->
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2 border text-left">ID</th>
+            <th class="px-4 py-2 border text-left">Client Name</th>
+            <th class="px-4 py-2 border text-left">Email</th>
+            <th class="px-4 py-2 border text-left">Phone</th>
+            <th class="px-4 py-2 border text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td class="px-4 py-2 border">{{ client.id }}</td>  <!-- ID -->
+            <td class="px-4 py-2 border">{{ client.name }}</td>  <!-- Client Name -->
+            <td class="px-4 py-2 border">{{ client.email }}</td>  <!-- Email -->
+            <td class="px-4 py-2 border">{{ client.phone }}</td>  <!-- Phone -->
+            <td class="px-4 py-2 border">
+              <!-- Action Buttons -->
+              <button class="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-blue-600" (click)="delete(client.id)">
+                Delete
+              </button>
+            </td>  <!-- Action -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
